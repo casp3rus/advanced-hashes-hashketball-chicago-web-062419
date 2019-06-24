@@ -157,7 +157,8 @@ def player_numbers(team_name)
   nums = []
   game_hash.each do |place, team|
     next unless team[:team_name] == team_name
-    team.each do |data|
+    team.each do |attribute, data|
+      next unless attribute == :players
       nums << data[:number]
     end
     end
