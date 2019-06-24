@@ -223,8 +223,7 @@ def player_with_most_of(statistic)
         if player[statistic].length > amount_of_stat
           amount_of_stat = player[statistic].length
           player_name = player[:player_name]
-        end
-      elsif player[statistic] > amount_of_stat
+        elsif player[statistic] > amount_of_stat
         amount_of_stat = player[statistic]
         player_name = player[:player_name]
       end
