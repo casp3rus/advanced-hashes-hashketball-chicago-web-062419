@@ -120,7 +120,7 @@ end
 # 
 
 def num_points_scored(sought_player_name)
-  game_hash.each do |_place, team|
+  game_hash.each do |place, team|
     team.each do |attribute, data|
       next unless attribute == :players
       data.each do |player|
@@ -131,7 +131,7 @@ def num_points_scored(sought_player_name)
 end
 
 def shoe_size(sought_player_name)
-  game_hash.each do |_place, team|
+  game_hash.each do |place, team|
     team.each do |attribute, data|
       next unless attribute == :players
       data.each do |player|
@@ -155,7 +155,7 @@ end
 
 def player_numbers(team_name)
   nums = []
-  game_hash.each do |_place, team|
+  game_hash.each do |place, team|
     next unless team[:team_name] == team_name
 
     team.each do |attribute, data|
@@ -169,8 +169,23 @@ def player_numbers(team_name)
   nums
 end
 
-def player_stats
-  
+def player_stats(sought_player_name)
+  new_hash = {}
+  game_hash.collect do |place, team|
+    team.each do |attribute, data|
+      next unless attribute == :players
+
+      game_hash[place][attribute].each do |player|
+        next unless player[:player_name] == sought_player_name
+
+        new_hash = player.delete_if do |k, _v|
+          k == :player_name
+        end
+      end
+    end
+  end
+  new_hash
+
 end
 
 def big_shoe_rebounds
