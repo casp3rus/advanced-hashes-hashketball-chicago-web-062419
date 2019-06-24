@@ -117,12 +117,11 @@ def game_hash
 end
 
 
-# 
-
 def num_points_scored(sought_player_name)
-  game_hash.each do |place, team|
+  game_hash.each do |_place, team|
     team.each do |attribute, data|
       next unless attribute == :players
+
       data.each do |player|
         return player[:points] if player[:player_name] == sought_player_name
       end
@@ -131,9 +130,10 @@ def num_points_scored(sought_player_name)
 end
 
 def shoe_size(sought_player_name)
-  game_hash.each do |place, team|
+  game_hash.each do |_place, team|
     team.each do |attribute, data|
       next unless attribute == :players
+
       data.each do |player|
         return player[:shoe] if player[:player_name] == sought_player_name
       end
@@ -148,14 +148,14 @@ def team_colors(team_name)
 end
 
 def team_names
-  game_hash.map do |place, team|
+  game_hash.collect do |_place, team|
     team[:team_name]
   end
 end
 
 def player_numbers(team_name)
   nums = []
-  game_hash.each do |place, team|
+  game_hash.each do |_place, team|
     next unless team[:team_name] == team_name
 
     team.each do |attribute, data|
@@ -172,13 +172,13 @@ end
 def player_stats(sought_player_name)
   new_hash = {}
   game_hash.collect do |place, team|
-    team.each do |attribute, data|
+    team.each do |attribute, _data|
       next unless attribute == :players
 
       game_hash[place][attribute].each do |player|
         next unless player[:player_name] == sought_player_name
 
-        new_hash = player.delete_if do |k, v|
+        new_hash = player.delete_if do |k, _v|
           k == :player_name
         end
       end
@@ -199,10 +199,11 @@ def big_shoe_rebounds
       end
     end
   end
+
   num_rebounds
 end
 
-# BONUS
+# Bonus Questions
 
 def iterate_through_players_for(name, statistic)
   game_hash.each do |_team, game_data|
@@ -215,6 +216,7 @@ end
 def player_with_most_of(statistic)
   player_name = nil
   amount_of_stat = 0
+
   game_hash.each do |_team, game_data|
     game_data[:players].each do |player|
       if player[statistic].is_a? String
@@ -228,6 +230,7 @@ def player_with_most_of(statistic)
       end
     end
   end
+
   player_name
 end
 
