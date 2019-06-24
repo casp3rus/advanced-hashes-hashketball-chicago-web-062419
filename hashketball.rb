@@ -213,21 +213,21 @@ def iterate_through_players_for(name, statistic)
 end
 
 
-def winning_team
-  scores = { 'Brooklyn Nets' => 0, 'Charlotte Hornets' => 0 }
+# def winning_team
+#   scores = { 'Brooklyn Nets' => 0, 'Charlotte Hornets' => 0 }
 
-  game_hash.each do |_team, game_data|
-    game_data[:players].each do |player|
-      scores[game_data[:team_name]] += iterate_through_players_for(player[:player_name], :points)
-    end
-end
+#   game_hash.each do |_team, game_data|
+#     game_data[:players].each do |player|
+#       scores[game_data[:team_name]] += iterate_through_players_for(player[:player_name], :points)
+#     end
+# end
 
-def player_with_longest_name
-  player_with_most_of(:player_name)
-end
+# def player_with_longest_name
+#   player_with_most_of(:player_name)
+# end
 
-# SUPER BONUS
+# # SUPER BONUS
 
-def long_name_steals_a_ton?
-  player_with_most_of(:steals) == player_with_most_of(:player_name)
-end
+# def long_name_steals_a_ton?
+#   player_with_most_of(:steals) == player_with_most_of(:player_name)
+# end
