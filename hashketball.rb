@@ -185,7 +185,6 @@ def player_stats(sought_player_name)
     end
   end
   new_hash
-
 end
 
 def big_shoe_rebounds
