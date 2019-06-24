@@ -204,9 +204,14 @@ end
 
 # BONUS
 
-def most_points_scored
-  
+def iterate_through_players_for(name, statistic)
+  game_hash.each do |_team, game_data|
+    game_data[:players].each do |player|
+      return player[statistic] if player[:player_name] == name
+    end
+  end
 end
+
 
 def winning_team
   
